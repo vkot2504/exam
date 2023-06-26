@@ -5,10 +5,12 @@ from threading import Thread
 
 
 
+
+
+
 TOKEN = '6025323622:AAHAWeqAHWmiSUflt-0Od0C5s1jhodMNMO4'
 bot = telebot.TeleBot(TOKEN)
-some_id = 254073195
-
+some_id = 435005825
 
 def schedule_checker():
     while True:
@@ -16,16 +18,14 @@ def schedule_checker():
         sleep(1)
 
 def function_to_run():
-    return bot.send_message(some_id, "Вот уже и утро наступило! Не правда ли?! Пора выбрать котика, умоляющего поставить мне пятерочку за экзамен. Жду в ответ цифру от 0-5. P.S.-интереснее присылать цифры по порядку. Но Вы просили пользователю дать возможность выбрать котиков.")
+    return bot.send_message(some_id, 'Вот уже и утро наступило! Не правда ли?! Пора выбрать котика, умоляющего поставить мне пятерочку за экзамен. Жду в ответ цифру от 0 до 5. P.S. интереснее присылать цифры по порядку. Но Вы просили пользователю дать возможность выбрать котиков. Дополнение- если Вы читаете это дополнение, значит мне все-таки удалось соединиться с часовым поясом сервера, чему я безумно рад сам! Если бы я знал, что столкнусь с такой проблемой -сделал бы еще котика про конкретy ситуацию с часовым поясом. UPD в очередной раз что-то пошло не так, я исправил ситуацию с ID. И если вы читаете уже это сообщение- то у меня все получилось') 
 
 if __name__ == "__main__":
-    schedule.every().day.at("09:00").do(function_to_run)
-    
-Thread(target=schedule_checker).start() 
-   
+    schedule.every().day.at("08:30").do(function_to_run)
+    Thread(target=schedule_checker).start() 
 
 
-    
+
 
 @bot.message_handler(content_types=['text'])
 def text(message):
@@ -50,14 +50,8 @@ def text(message):
         p= open('5.png', 'rb')
         bot.send_photo(message.chat.id,p)
 
+
+bot.polling()
+    
     
 
-        
-    
-    
-
-
-
-
-
-bot.polling(none_stop=True)
